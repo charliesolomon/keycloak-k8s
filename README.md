@@ -1,18 +1,21 @@
 # keycloak-k8s
 Keycloak SSO on DigitalOcean kubernetes
 
-## Install ingress-nginx
-Using https://kubernetes.github.io/ingress-nginx/deploy/
+## Prerequisites
+- A running k8s cluster on DigitalOcean
 
-### install command for DigitalOcean:
+## Install ingress-nginx to the k8s cluster
+Using instructions: https://kubernetes.github.io/ingress-nginx/deploy/
+
+### Command for DigitalOcean from above docs::
 `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.35.0/deploy/static/provider/do/deploy.yaml`
 
 (you can also use helm to install... see bottom of above linked docs)
 
-### check install
+### Check install
 `kubectl get pods -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx --watch`
 
-### check ingress version
+### Check ingress version
 ```
 POD_NAMESPACE=ingress-nginx
 POD_NAME=$(kubectl get pods -n $POD_NAMESPACE -l app.kubernetes.io/name=ingress-nginx --field-selector=status.phase=Running -o jsonpath='{.items[0].metadata.name}')
@@ -31,6 +34,8 @@ NGINX Ingress controller
 ```
 
 ## Install cert-manager
+- TODO: instructions/link for arkade installation
+
 `arkade install cert-manager`
 
 ## Create namespace for keycloak
@@ -84,7 +89,7 @@ spec:
 
 `kubectl apply -f letsencrypt-issuer.yaml`
 
-## Edit keycloak-config.yaml
+## Create keycloak-config.yaml
 - Create a username/password for the keycloak admin user
 - Use your own domain
 - Specify the letsencrypt-staging issuer for testing
