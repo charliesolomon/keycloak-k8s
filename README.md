@@ -91,7 +91,7 @@ spec:
 
 ## Create keycloak-config.yaml
 - Create a username/password for the keycloak admin user
-- Use your own domain
+- Use your own domain instead of "keycloak.example.com"
 - Specify the letsencrypt-staging issuer for testing
 - When it works, uninstall keycloak, change to letsencrypt-prod issuer and reinstall
 
@@ -102,6 +102,14 @@ extraEnv: |
     value: <put username here>
   - name: KEYCLOAK_PASSWORD
     value: <put password here>
+  - name: KEYCLOAK_HTTP_PORT
+    value: "80"
+  - name: KEYCLOAK_HTTPS_PORT
+    value: "443"
+  - name: KEYCLOAK_HOSTNAME
+    value: keycloak.example.com
+  - name: PROXY_ADDRESS_FORWARDING
+    value: "true"
 postgresql:
   enabled: false
 ingress:
