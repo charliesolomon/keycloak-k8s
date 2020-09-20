@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1alpha3
+kind: Issuer
+metadata:
+  annotations:
+  name: letsencrypt-prod
+  namespace: keycloak
+spec:
+  acme:
+    email: charliesolomon@gmail.com
+    privateKeySecretRef:
+      name: cert-manager-issuer-key
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+    - http01:
+        ingress:
+          class: nginx

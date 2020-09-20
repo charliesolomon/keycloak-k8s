@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: keycloak
+  namespace: keycloak
+  annotations:
+    cert-manager.io/issuer: letsencrypt-prod
+spec:
+  tls:
+    - hosts:
+      - keycloak.eofri.com
+      secretName: keycloak-gateway
+  rules:
+  - host: keycloak.eofri.com
+    http:
+      paths:
+      - backend:
+          serviceName: keycloak
+          servicePort: 8080
