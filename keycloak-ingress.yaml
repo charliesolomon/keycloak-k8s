@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - keycloak.eofri.com
+      - keycloak.example.com
       secretName: keycloak-gateway
   rules:
-  - host: keycloak.eofri.com
+  - host: keycloak.example.com
     http:
       paths:
       - backend:

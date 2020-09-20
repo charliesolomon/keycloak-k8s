@@ -6,7 +6,7 @@ metadata:
   namespace: keycloak
 spec:
   acme:
-    email: charliesolomon@gmail.com
+    email: me@example.com
     privateKeySecretRef:
       name: cert-manager-issuer-key
     server: https://acme-v02.api.letsencrypt.org/directory
